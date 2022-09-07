@@ -1,8 +1,10 @@
+/* font for page */
 @font-face {
    font-family: bubble;
    src: url(./fonts/PlayfairDisplay-Regular.ttf);
 }
 
+/* setting colour variables */
 :root {
    --theme1_header: #F2FDFF;
    --theme1_current: #DBCBD8;
@@ -19,73 +21,85 @@
    --_spacer: 10px;
 }
 
- * {
-    margin: 0;
-    padding: 0;
-    font-family: bubble;
- }
+* {
+   margin: 0;
+   padding: 0;
+   font-family: bubble;
+   color: black;
+}
 
 
- .grid {
-    display: grid;
-    grid-template-rows: repeat(4, 1fr);
-    height: 100vh;
- }
+/* Setting up format of page */
+.grid {
+   display: grid;
+   grid-template-rows: repeat(4, 1fr);
+   height: 100vh;
+}
 
- .header {
-    background: var(--theme1_header);
-    grid-column: 1 / -1;
-    text-align: center;
-    position: relative;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 1);
+/* Header design */
+.header {
+   background: var(--theme1_header);
+   grid-column: 1 / -1;
+   text-align: center;
+   position: relative;
+   box-shadow: 0px 2px 4px rgba(0, 0, 0, 1);
 
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
-    align-items: center;
- }
+   display: grid;
+   grid-template-columns: 2fr 1fr 1fr;
+   align-items: center;
+}
 
- .header > h1 {
-    font-size: 6rem;
- }
+.header > h1 {
+   font-size: 6rem;
+}
 
- .header > h2 {
+.header > h2 {
    margin: var(--_spacer);
- }
+}
 
- #add_book {
-    background: #33ccff;
-    border-radius: 15%;
-    padding: 1em;
+/* Adding new book button */
+#add_book {
+   background: #33ccff;
+   border: #33ccff;
+   border-radius: 15%;
+   padding: 1em 4em;
+   box-shadow: 4px 4px 8px rgba(0, 0, 0, .5);
 
-    cursor: pointer;
-    outline: none;
-    font-size: 1em;
-    font-weight: 500;
-    transition: 1s ease-in-out;
- }
+   cursor: pointer;
+   outline: none;
+   font-size: 1em;
+   font-weight: 500;
+   transition: 1s ease-in-out;
+}
 
- #add_book:hover {
+#add_book:hover {
    background: #ff99cc;
- }
+   border: #ff99cc;
+   box-shadow: 2px 2px 4px rgba(0, 0, 0, .1),
+   inset 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
 
- #add_book > p {
+#add_book > p {
    font-size: 1.5rem;
    transition: 1s ease-in-out;
- }
+}
 
- #add_book:hover > p {
+#add_book:hover > p {
    transform: rotate(180deg);
- }
+}
 
- .current {
+/* Currently reading section */
+.current {
    background-color: var(--theme1_current);
- }
+}
 
- .current > h2, .favourites > h2, .all > h2{
+.current > h2, 
+.favourites > h2, 
+.all > h2{
    margin: var(--_spacer);
- }
+}
 
- .media-scroller {
+.media-scroller {
    display: grid;
    grid-auto-flow: column;
    grid-auto-columns: 21%;
@@ -94,9 +108,9 @@
 
    overflow-x: auto;
    overscroll-behavior-inline: contain;
- }
+}
 
- .media-element {
+.media-element {
    display: grid;
    grid-template-rows: min-content;
    gap: var(--_spacer);
@@ -111,50 +125,221 @@
    object-fit: cover;
 }
 
+/* favourites section */
 .favourites {
-    background-color: var(--theme1_favourites);
- }
-
-.all {
- background-color: var(--theme1_all);
+   background-color: var(--theme1_favourites);
 }
 
-.New_Book_Background {
-    position: relative;
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background: rgba(0, 0, 0, .8);
+/* all books section */
+.all {
+   background-color: var(--theme1_all);
+}
 
-    opacity: 0;
-    pointer-events: none;
+/* Form for adding new book */
+.New_Book_Background {
+   position: relative;
+   position: fixed;
+   top: 0;
+   right: 0;
+   bottom: 0;
+   left: 0;
+   background: rgba(0, 0, 0, .8);
+
+   opacity: 0;
+   pointer-events: none;
 }
 
 .New_Book {
-     width: 50%;
-     height: 50%;
-     background: linear-gradient(to bottom right, #33ccff, #ff99cc);
-     color: white;
-     position: absolute;
-     top: 0;
-     right: 0;
-     bottom: 0;
-     left: 0;
-     margin: auto;
-     padding: 50px;
+   width: 25%;
+   height: 40%;
+   background: linear-gradient(to bottom right, #33ccff, #ff99cc);
+   color: white;
+   position: absolute;
+   top: 0;
+   right: 0;
+   bottom: 0;
+   left: 0;
+   margin: auto;
+   padding: 50px;
+   border-radius: 10px;
 
-     display: grid;
-     justify-content: center;
-     align-items: stretch;
-     grid-template-columns: 9fr 1fr;
-
-    opacity: 0;
-    pointer-events: none;
+   opacity: 0;
+   pointer-events: none;
 }
 
+legend {
+   margin: 0 auto;
+}
+
+.child-form {
+   border: none;
+   width: 100%;
+   height: 100%;
+   margin: 0;
+   font-size: 2.5rem;
+
+   display: flex;
+   flex-flow: column wrap;
+   position: relative;
+}
+
+/* .child-form > * {
+   border: 1px solid red;
+} */
+
+input[type = 'text'],
+input[type = 'number'] {
+   background: #ecf0f3;
+   padding: 10px;
+   height: 25%;
+   font-size: 1rem;
+   border-radius: 50px;
+   border: none;
+   box-shadow: inset 6px 6px 6px #cbced1, 
+   inset -6px -6px 6px white;
+   width: 90%;
+   outline: none;
+}
+
+input[type='text']:focus,
+input[type='number']:focus {
+   border-style: none;
+}
+
+.title,
+.author,
+.pages,
+.read-book {
+   margin-left: var(--_spacer);
+}
+
+/* Checkbox if the book is read */
+.read-book {
+   font-size: 0.7em;
+   display: inline-flex;
+   width: 100%;
+   gap: 20px;
+}
+
+
+.switch {
+   display: inline-block;
+   height: 34px;
+   position: relative;
+   width: 60px;
+}
+
+.switch input {
+   display: none;
+}
+
+.slider {
+   background-color: #ccc;
+   bottom: 0;
+   cursor: pointer;
+   left: 0;
+   position: absolute;
+   right: 0;
+   top: 0;
+   transition: .4s;
+
+   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.slider::before {
+   background-color: #fff;
+   bottom: 4px;
+   content: "";
+   height: 26px;
+   left: 4px;
+   position: absolute;
+   transition: .4s;
+   width: 26px;
+}
+
+input:checked+.slider::before {
+   transform: translateX(26px);
+}
+
+input:checked+.slider {
+   background-color: rgb(102, 187, 106);
+}
+
+.slider.round {
+   border-radius: 34px;
+}
+
+.slider.round::before {
+   border-radius: 50%;
+}
+
+/* show the popup form to add new book */
 .show {
    pointer-events: auto;
    opacity: 1;
+}
+
+/* exit button for form */
+#close {
+   position:absolute;
+   top: 0;
+   left: 0;
+   border-radius: 50%;
+   padding: 15px;
+   background: lightcoral;
+   margin: 10px;
+   cursor: pointer;
+   opacity: 0.6;
+   border: none;
+   font-size: 1.2rem;
+   box-shadow: 2px 2px 2px rgba(0, 0, 0, .3);
+}
+
+#close:hover {
+   background: red;
+   transform: scale(1.1);
+   opacity: 1;
+   box-shadow: 4px 4px 4px rgba(0, 0, 0, .5);
+}
+
+/* buttons on form */
+.form-buttons {
+   display: grid;
+   grid-template-columns: repeat(2, 1fr);
+   height: 15%;
+   position: absolute;
+   bottom: 0;
+   right: 0;
+   left: 0;
+}
+
+.form-buttons .button {
+   width: 90%;
+   height: 100%;
+   gap: 0;
+   margin: 0;
+   padding: 0;
+   border-radius: 15px;
+   border: none;
+   box-shadow: 3px 3px 3px rgba(0, 0, 0, .3),
+   inset 6px 6px 6px #cbced1, 
+   inset -6px -6px 6px white;
+   font-size: 0.8em;
+}
+
+/* .form-buttons .button:hover {
+   box-shadow: inset 9px 9px 9px #cbced1, 
+   inset -9px -9px 9px white;
+} */
+
+#add-button:hover {
+   background: lightgreen;
+   box-shadow: inset 0px 0px lightgreen;
+   font-size: 0.7em;
+}
+
+#clear-button:hover {
+   background: lightgray;
+   box-shadow: inset 0px 0px lightgray;
+   font-size: 0.7em;
 }
