@@ -1,0 +1,107 @@
+@font-face {
+   font-family: bubble;
+   src: url(./fonts/PlayfairDisplay-Regular.ttf);
+}
+
+:root {
+   --theme1_header: #F25C54;
+   --theme1_current: #F27059;
+   --theme1_favourites: #F4845F;
+   --theme1_all: #F79D65;
+   --theme1_buttons: #E0FBFC;
+
+   --theme2_header: #253237;
+   --theme2_current: #5C6B73;
+   --theme2_favourites: #9DB4C0;
+   --theme2_all: #C2DFE3;
+   --theme2_buttons: #F7B267;
+}
+
+ * {
+    margin: 0;
+    padding: 0;
+    font-family: bubble;
+ }
+
+
+ .grid {
+    display: grid;
+    grid-template-rows: repeat(4, 1fr);
+    height: 100vh;
+ }
+
+ .header {
+    background-color: var(--theme1_header);
+    grid-column: 1 / -1;
+    text-align: center;
+
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+ }
+
+ .header > h1 {
+    font-size: 6rem;
+ }
+
+ #add_book {
+    background-color: var(--theme1_buttons);
+    border-radius: 100%;
+    width: 2rem;
+    height: 2rem;
+
+    cursor: pointer;
+    outline: none;
+    font-size: 1em;
+    font-weight: 500;
+ }
+
+ .current {
+    background-color: var(--theme1_current);
+ }
+
+ .favourites {
+    background-color: var(--theme1_favourites);
+ }
+
+.all {
+ background-color: var(--theme1_all);
+}
+
+.New_Book_Background {
+    position: relative;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, .8);
+
+    opacity: 0;
+    pointer-events: none;
+}
+
+.New_Book {
+     width: 50%;
+     height: 50%;
+     background: var(--theme2_header);
+     position: absolute;
+     top: 0;
+     right: 0;
+     bottom: 0;
+     left: 0;
+     margin: auto;
+     padding: 50px;
+
+     display: grid;
+     justify-content: center;
+     align-items: stretch;
+     grid-template-columns: 9fr 1fr;
+
+    opacity: 0;
+    pointer-events: none;
+}
+
+.show {
+   pointer-events: auto;
+   opacity: 1;
+}
