@@ -4,17 +4,19 @@
 }
 
 :root {
-   --theme1_header: #F25C54;
-   --theme1_current: #F27059;
-   --theme1_favourites: #F4845F;
-   --theme1_all: #F79D65;
-   --theme1_buttons: #E0FBFC;
+   --theme1_header: #F2FDFF;
+   --theme1_current: #DBCBD8;
+   --theme1_favourites: #DBCBD8;
+   --theme1_all: #DBCBD8;
+   --theme1_buttons: #33ccff;
 
    --theme2_header: #253237;
    --theme2_current: #5C6B73;
    --theme2_favourites: #9DB4C0;
    --theme2_all: #C2DFE3;
    --theme2_buttons: #F7B267;
+
+   --_spacer: 10px;
 }
 
  * {
@@ -31,35 +33,85 @@
  }
 
  .header {
-    background-color: var(--theme1_header);
+    background: var(--theme1_header);
     grid-column: 1 / -1;
     text-align: center;
+    position: relative;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 1);
 
     display: grid;
-    grid-template-columns: 3fr 1fr;
+    grid-template-columns: 2fr 1fr 1fr;
+    align-items: center;
  }
 
  .header > h1 {
     font-size: 6rem;
  }
 
+ .header > h2 {
+   margin: var(--_spacer);
+ }
+
  #add_book {
-    background-color: var(--theme1_buttons);
-    border-radius: 100%;
-    width: 2rem;
-    height: 2rem;
+    background: #33ccff;
+    border-radius: 15%;
+    padding: 1em;
 
     cursor: pointer;
     outline: none;
     font-size: 1em;
     font-weight: 500;
+    transition: 1s ease-in-out;
+ }
+
+ #add_book:hover {
+   background: #ff99cc;
+ }
+
+ #add_book > p {
+   font-size: 1.5rem;
+   transition: 1s ease-in-out;
+ }
+
+ #add_book:hover > p {
+   transform: rotate(180deg);
  }
 
  .current {
-    background-color: var(--theme1_current);
+   background-color: var(--theme1_current);
  }
 
- .favourites {
+ .current > h2, .favourites > h2, .all > h2{
+   margin: var(--_spacer);
+ }
+
+ .media-scroller {
+   display: grid;
+   grid-auto-flow: column;
+   grid-auto-columns: 21%;
+   gap: var(--_spacer);
+   margin: var(--_spacer);
+
+   overflow-x: auto;
+   overscroll-behavior-inline: contain;
+ }
+
+ .media-element {
+   display: grid;
+   grid-template-rows: min-content;
+   gap: var(--_spacer);
+   padding: var(--_spacer);
+}
+
+.current-placeholder {
+   inline-size: 100%;
+   border-radius: 10px;
+   height: 200px;
+   background: linear-gradient(to bottom right, #33ccff, #ff99cc);
+   object-fit: cover;
+}
+
+.favourites {
     background-color: var(--theme1_favourites);
  }
 
@@ -83,7 +135,8 @@
 .New_Book {
      width: 50%;
      height: 50%;
-     background: var(--theme2_header);
+     background: linear-gradient(to bottom right, #33ccff, #ff99cc);
+     color: white;
      position: absolute;
      top: 0;
      right: 0;
