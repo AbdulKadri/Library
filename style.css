@@ -4,7 +4,7 @@
    src: url(./fonts/PlayfairDisplay-Regular.ttf);
 }
 
-/* setting colour variables */
+/* testing colour variables */
 :root {
    --theme1_header: #F2FDFF;
    --theme1_current: #DBCBD8;
@@ -110,19 +110,17 @@
    overscroll-behavior-inline: contain;
 }
 
-.media-element {
-   display: grid;
-   grid-template-rows: min-content;
-   gap: var(--_spacer);
-   padding: var(--_spacer);
-}
-
-.current-placeholder {
+.card {
    inline-size: 100%;
    border-radius: 10px;
    height: 200px;
    background: linear-gradient(to bottom right, #33ccff, #ff99cc);
    object-fit: cover;
+
+   display: grid;
+   justify-content: center;
+   text-align: center;
+   font-size: 1.4em;
 }
 
 /* favourites section */
@@ -182,10 +180,6 @@ legend {
    flex-flow: column wrap;
    position: relative;
 }
-
-/* .child-form > * {
-   border: 1px solid red;
-} */
 
 input[type = 'text'],
 input[type = 'number'] {
@@ -327,12 +321,7 @@ input:checked+.slider {
    font-size: 0.8em;
 }
 
-/* .form-buttons .button:hover {
-   box-shadow: inset 9px 9px 9px #cbced1, 
-   inset -9px -9px 9px white;
-} */
-
-#add-button:hover {
+#submit-button:hover {
    background: lightgreen;
    box-shadow: inset 0px 0px lightgreen;
    font-size: 0.7em;

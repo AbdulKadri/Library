@@ -32,113 +32,17 @@
         
         <div class="current">
             <h2>Currently Reading</h2>
-
-            <div class="media-scroller">
-                <div class="media element">
-                    <div class="current-placeholder"></div>
-                </div>
-                <div class="media element">
-                    <div class="current-placeholder"></div>
-                </div>
-                <div class="media element">
-                    <div class="current-placeholder"></div>
-                </div>
-                <div class="media element">
-                    <div class="current-placeholder"></div>
-                </div>
-                <div class="media element">
-                    <div class="current-placeholder"></div>
-                </div>
-                <div class="media element">
-                    <div class="current-placeholder"></div>
-                </div>
-                <div class="media element">
-                    <div class="current-placeholder"></div>
-                </div>
-                <div class="media element">
-                    <div class="current-placeholder"></div>
-                </div>
-                <div class="media element">
-                    <div class="current-placeholder"></div>
-                </div>
-                <div class="media element">
-                    <div class="current-placeholder"></div>
-                </div>
-            </div>
+            <div class="media-scroller"></div>
         </div>
         
         <div class="favourites">
             <h2>Favourites</h2>
-
-            <div class="media-scroller">
-                <div class="media element">
-                    <div class="current-placeholder"></div>
-                </div>
-                <div class="media element">
-                    <div class="current-placeholder"></div>
-                </div>
-                <div class="media element">
-                    <div class="current-placeholder"></div>
-                </div>
-                <div class="media element">
-                    <div class="current-placeholder"></div>
-                </div>
-                <div class="media element">
-                    <div class="current-placeholder"></div>
-                </div>
-                <div class="media element">
-                    <div class="current-placeholder"></div>
-                </div>
-                <div class="media element">
-                    <div class="current-placeholder"></div>
-                </div>
-                <div class="media element">
-                    <div class="current-placeholder"></div>
-                </div>
-                <div class="media element">
-                    <div class="current-placeholder"></div>
-                </div>
-                <div class="media element">
-                    <div class="current-placeholder"></div>
-                </div>
-            </div>
+            <div class="media-scroller"></div>
         </div>
-
+        
         <div class="all">
             <h2>All Books</h2>
-
-            <div class="media-scroller">
-                <div class="media element">
-                    <div class="current-placeholder"></div>
-                </div>
-                <div class="media element">
-                    <div class="current-placeholder"></div>
-                </div>
-                <div class="media element">
-                    <div class="current-placeholder"></div>
-                </div>
-                <div class="media element">
-                    <div class="current-placeholder"></div>
-                </div>
-                <div class="media element">
-                    <div class="current-placeholder"></div>
-                </div>
-                <div class="media element">
-                    <div class="current-placeholder"></div>
-                </div>
-                <div class="media element">
-                    <div class="current-placeholder"></div>
-                </div>
-                <div class="media element">
-                    <div class="current-placeholder"></div>
-                </div>
-                <div class="media element">
-                    <div class="current-placeholder"></div>
-                </div>
-                <div class="media element">
-                    <div class="current-placeholder"></div>
-                </div>
-            </div>
+            <div class="media-scroller"></div>
         </div>
         
     </div>
@@ -146,36 +50,36 @@
         <div class="New_Book" id="popup2">
             <fieldset class="child-form">
                 <legend>Add new book</legend>
-                <form action="#" method="post">
+                <form id="_form">
                     
                     <div class="title">
                         <label for="title"></label>
-                        <input type="text" name="title" id="title" placeholder="Title">
+                        <input type="text" name="title" id="title" placeholder="Title" required>
                     </div>
                     
                     <div class="author">
                         <label for="author"></label>
-                        <input type="text" name="author" id="author" placeholder="Author">
+                        <input type="text" name="author" id="author" placeholder="Author" required>
                     </div>
                     
                     <div class="pages">
                         <label for="pages"></label>
-                        <input type="number" name="pages" id="pages" placeholder="Pages">
+                        <input type="number" name="pages" id="pages" placeholder="Pages" required>
                     </div>
                     
                     <div class="read-book">
                         <p>Have you read it?</p>
                         <label class="switch" for="checkbox">
-                            <input type="checkbox" value="checkbox" id="checkbox">
+                            <input type="checkbox" id="checkbox">
                             <div class="slider round"></div>
                         </label>
                     </div>
                     
-                    <div class="form-buttons">
-                        <input class="button" id="add-button" type="button" value="Add">
-                        <input class="button" id="clear-button" type="button" value="Clear">
-                    </div>
                 </form>
+                <div class="form-buttons">
+                    <button type="submit" class="button" id="submit-button">Add</button>
+                    <button type="reset" class="button" id="clear-button">Clear</button>
+                </div>
                 
             </fieldset>
             <button id="close">X</button>
