@@ -169,9 +169,8 @@ for (let i = 0; i < deleteBook.length; i++) {
 }
 
 function updateTotalBooks() {
-    let countTotalBooks1 = document.getElementById('all');
-    let countTotalBooks2 = countTotalBooks1.getElementsByTagName('div').length - 1;
-    totalBooks.innerText = (`Total Books: ${countTotalBooks2}`);
+    let countTotalBooks = document.getElementsByClassName('card').length;
+    totalBooks.innerText = (`Total Books: ${countTotalBooks}`);
 }
 
 function updateTotalRead() {
