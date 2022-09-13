@@ -22,9 +22,9 @@
             <h2>
                 <fieldset>
                     <legend>Library Log</legend>
-                    <p>Total Books: 0</p>
-                    <p>Total Read: 0</p>
-                    <p>Total Not Read: 0</p>
+                    <p id="totalBooks">Total Books: 0</p>
+                    <p id="totalRead">Total Read: 0</p>
+                    <p id="totalNotRead">Total Not Read: 0</p>
                 </fieldset>  
             </h2>
             
@@ -40,7 +40,7 @@
             <div class="media-scroller"></div>
         </div>
         
-        <div class="all">
+        <div class="all" id="all">
             <h2>All Books</h2>
             <div class="media-scroller"></div>
         </div>
@@ -70,7 +70,7 @@
                     <div class="read-book">
                         <p>Have you read it?</p>
                         <label class="switch" for="checkbox">
-                            <input type="checkbox" id="checkbox">
+                            <input type="checkbox" title="checkbox" name="checkbox" id="checkbox">
                             <div class="slider round"></div>
                         </label>
                     </div>

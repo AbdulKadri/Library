@@ -118,9 +118,15 @@
    object-fit: cover;
 
    display: grid;
+   grid-template-rows: repeat(4, 1fr);
+   /* grid-template-columns: repeat(4, 1fr); */
    justify-content: center;
    text-align: center;
    font-size: 1.4em;
+
+   position: relative;
+   overflow: auto;
+   word-wrap: break-word;
 }
 
 /* favourites section */
@@ -331,4 +337,64 @@ input:checked+.slider {
    background: lightgray;
    box-shadow: inset 0px 0px lightgray;
    font-size: 0.7em;
+}
+
+.fa-star,
+.fa-book-open,
+.fa-gear,
+.fa-trash {
+   border: none;
+   background: none;
+   color: gray;
+   cursor: pointer;
+   margin: 0;
+   padding: 0;
+   width: -moz-fit-content;
+   width: fit-content;
+   transform: scale(1.5);
+
+   position: absolute;
+}
+
+.fa-star {
+   bottom: 5%;
+   right: 15%;
+}
+
+.fa-book-open {
+   bottom: 5%;
+   right: 5%;
+}
+
+.fa-gear {
+   top: 5%;
+   right: 5%;
+}
+
+.fa-trash {
+   bottom: 5%;
+   left: 5%;
+}
+
+.fa-star:hover,
+.fa-book-open:hover,
+.fa-gear:hover,
+.fa-trash:hover {
+   transform: scale(1.7);
+}
+
+.fa-yellow {
+   color: gold;
+}
+
+.fa-blue {
+   color: darkblue;
+}
+
+.fa-gear:hover {
+   color: black;
+}
+
+.fa-trash:hover {
+   color: red;
 }
