@@ -117,16 +117,18 @@ function clearForm() {
 const star = document.getElementsByClassName('fa-star');
 for (let i = 0; i < star.length; i++) {
     star[i].addEventListener("click", (e) => {
-        if (star[i].classList.contains('fa-yellow')) {
-            star[i].classList.remove('fa-yellow')
-            console.log(i)
+        if (e.target.classList.contains('fa-yellow')) {
+            e.target.classList.remove('fa-yellow')
             mediaScroller[1].removeChild(e.target.parentNode)
             mediaScroller[2].appendChild(e.target.parentNode)
         } else {
-            star[i].classList.add('fa-yellow');
-            console.log(i)
-            mediaScroller[2].removeChild(e.target.parentNode)
-            mediaScroller[1].appendChild(e.target.parentNode)
+            if (e.target.nextElementSibling.classList.contains('fa-blue')) {
+                alert('Whoops cannot have Favourites and Currently Reading both active at this time')
+            } else {
+                e.target.classList.add('fa-yellow');
+                mediaScroller[2].removeChild(e.target.parentNode)
+                mediaScroller[1].appendChild(e.target.parentNode)
+                }
         }
     })
 }
@@ -134,14 +136,18 @@ for (let i = 0; i < star.length; i++) {
 const book = document.getElementsByClassName('fa-book-open');
 for (let i = 0; i < book.length; i++) {
     book[i].addEventListener("click", (e) => {
-        if (book[i].classList.contains('fa-blue')) {
-            book[i].classList.remove('fa-blue')
+        if (e.target.classList.contains('fa-blue')) {
+            e.target.classList.remove('fa-blue')
             mediaScroller[0].removeChild(e.target.parentNode)
             mediaScroller[2].appendChild(e.target.parentNode)
         } else {
-            book[i].classList.add('fa-blue');
-            mediaScroller[2].removeChild(e.target.parentNode)
-            mediaScroller[0].appendChild(e.target.parentNode)
+            if (e.target.previousElementSibling.classList.contains('fa-yellow')) {
+                alert('Whoops cannot have Favourites and Currently Reading both active at this time')
+            } else {
+                e.target.classList.add('fa-blue');
+                mediaScroller[2].removeChild(e.target.parentNode)
+                mediaScroller[0].appendChild(e.target.parentNode)
+            }
         }
     })
 }
