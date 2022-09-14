@@ -13,6 +13,15 @@
         <div class="header">
             <h1><i class="fa-solid fa-book-open-reader"></i>My Library</h1>
             
+            <div class="toggle-container">
+                <button class="theme-btn light" title="Light mode" onclick="setTheme('light')">
+                    <i class="fa-solid fa-sun"></i>
+                </button>
+                <button class="theme-btn dark" title="Dark mode" onclick="setTheme('dark')">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+            </div>
+
             <div>
                 <h2>Add New Book</h2>
                 <button type="submit" id="add_book">

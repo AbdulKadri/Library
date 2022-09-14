@@ -5,27 +5,34 @@
 }
 
 /* testing colour variables */
-:root {
-   --theme1_header: #F2FDFF;
-   --theme1_current: #DBCBD8;
-   --theme1_favourites: #DBCBD8;
-   --theme1_all: #DBCBD8;
-   --theme1_buttons: #33ccff;
-
-   --theme2_header: #253237;
-   --theme2_current: #5C6B73;
-   --theme2_favourites: #9DB4C0;
-   --theme2_all: #C2DFE3;
-   --theme2_buttons: #F7B267;
+:root,
+   :root.light {
+   --header: #F2FDFF;
+   --body: #DBCBD8;
+   --buttons: #33ccff;
+   --text-color: black;
 
    --_spacer: 10px;
-}
+   }
+
+   :root.dark {
+      --header: #5C6B73;
+      --body: #253237;
+      --buttons: #ff99cc;
+      --text-color: white;
+   
+      --_spacer: 10px;
+   }
+
 
 * {
    margin: 0;
    padding: 0;
    font-family: bubble;
-   color: black;
+}
+
+body {
+   color: var(--text-color);
 }
 
 
@@ -38,14 +45,14 @@
 
 /* Header design */
 .header {
-   background: var(--theme1_header);
+   background: var(--header);
    grid-column: 1 / -1;
    text-align: center;
    position: relative;
    box-shadow: 0px 2px 4px rgba(0, 0, 0, 1);
 
    display: grid;
-   grid-template-columns: 2fr 1fr 1fr;
+   grid-template-columns: 4fr 1fr 2fr 2fr;
    align-items: center;
 }
 
@@ -55,6 +62,30 @@
 
 .header > h2 {
    margin: var(--_spacer);
+}
+
+.theme-btn {
+   width: 3em;
+   height: 3em;
+   padding: 0.5em;
+   border-radius: 50%;
+   cursor: pointer;
+   border: none;
+   background-color: gray;
+}
+
+.theme-btn img {
+   height: 100%;
+   width: 100%;
+   object-fit: cover;
+}
+
+.theme-btn:hover {
+   transform: scale(1.2);
+}
+
+.light {
+   color: gold;
 }
 
 /* Adding new book button */
@@ -90,7 +121,7 @@
 
 /* Currently reading section */
 .current {
-   background-color: var(--theme1_current);
+   background-color: var(--body);
 }
 
 .current > h2, 
@@ -131,12 +162,12 @@
 
 /* favourites section */
 .favourites {
-   background-color: var(--theme1_favourites);
+   background-color: var(--body);
 }
 
 /* all books section */
 .all {
-   background-color: var(--theme1_all);
+   background-color: var(--body);
 }
 
 /* Form for adding new book */
