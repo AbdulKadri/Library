@@ -9,8 +9,12 @@ const clearButton = document.getElementById("clear-button");
 const totalBooks = document.getElementById('totalBooks');
 const totalRead = document.getElementById('totalRead');
 const totalNotRead = document.getElementById('totalNotRead');
-let readCounter = 0
-let notReadCounter = 0
+
+const _popup3 = document.getElementById("popup3");
+const _popup4 = document.getElementById("popup4");
+const editSubmitButton = document.getElementById("edit-submit-button");
+const editCancelButton = document.getElementById("edit-cancel-button");
+const _editClose = document.getElementById("editClose");
 
 submitButton.addEventListener("click", submitNewBook);
 clearButton.addEventListener("click", clearForm);
@@ -24,19 +28,27 @@ _open.addEventListener('click', () => {
 _close.addEventListener('click', () => {
     closeForm();
 })
+_editClose.addEventListener('click', () => {
+    closeForm();
+})
+editCancelButton.addEventListener('click', () => {
+    closeForm();
+})
 
 function closeForm() {
     _popup1.classList.remove('show');
     _popup2.classList.remove('show');
+    _popup3.classList.remove('show');
+    _popup4.classList.remove('show');
 }
 
 let myLibrary = [];
 
 class Book {
     constructor(title, author, pages, read) {
-        this.title = title;
-        this.author = author;
-        this.pages = pages;
+        this.Title = title;
+        this.Author = author;
+        this.Pages = pages;
         this.read = read;
     }
 }
@@ -63,14 +75,15 @@ function displayBooks() {
         for (let key in myLibrary) {
             const para = document.createElement('p');
             if (key == "read") {
+                para.classList.add('readOrNot')
                 if (myLibrary[key] == true) {
-                    readCounter += 1
                     para.textContent = 'Read'
                     newCard.appendChild(para)
+                    updateTotalRead()
                 } else {
-                    notReadCounter += 1
                     para.textContent = 'Not Read'
                     newCard.appendChild(para)
+                    updateTotalRead()
                 }
             } else {
                 para.textContent = (`${key}: ${myLibrary[key]}`)
@@ -81,16 +94,14 @@ function displayBooks() {
         newCard.appendChild(favouritesButton);
         newCard.appendChild(curReadButton);
         newCard.appendChild(editButton);
+        updateTotalBooks();
     })
     myLibrary = [];
 }
 
-addBookToLibrary("The Hobbit", "J.R.R Tolkien", "295", true);
-addBookToLibrary("Bruh", "when", "50", false);
-addBookToLibrary("okay", "who", "100", false);
-addBookToLibrary("Make Money", "when", "10", false);
-addBookToLibrary("Scram", "Me", "0", false);
-addBookToLibrary("Lose Money", "You", "5", true);
+addBookToLibrary("Green Mile", "Stephen King", "544", true);
+addBookToLibrary("The Autobiography of Malcolm X", "Alex Haley", "496", true);
+addBookToLibrary("To Kill A Mockingbird", "Harper Lee", "281", false);
 
 function submitNewBook() {
     let title = document.getElementById('title').value;
@@ -99,15 +110,12 @@ function submitNewBook() {
     let read = document.getElementById('checkbox').checked;
 
     if (title === '' || author === '' || pages === '') {
-        return;
+        return alert('Please fill out all fields');
     } else {
+        addBookToLibrary(title, author, pages, read);
         document.getElementById('_form').reset();
         closeForm();
     }
-
-    addBookToLibrary(title, author, pages, read);
-    updateTotalBooks();
-    updateTotalRead();
 }
 
 function clearForm() {
@@ -152,11 +160,41 @@ for (let i = 0; i < book.length; i++) {
     })
 }
 
-const edit = document.getElementsByClassName('fa-gear');
-for (let i = 0; i < edit.length; i++) {
-    edit[i].addEventListener('click', () => {
-        _popup1.classList.add('show');
-        _popup2.classList.add('show');
+const _openEdit = document.getElementsByClassName('fa-gear');
+for (let i = 0; i < _openEdit.length; i++) {
+    _openEdit[i].addEventListener('click', (e) => {
+        _popup3.classList.add('show');
+        _popup4.classList.add('show');
+        let practice = e.target.parentNode.children[0].innerText.split(':')[1]
+        title = document.getElementById('editTitle')
+        title.value = (`${practice}`)
+        author = document.getElementById('editAuthor')
+        author.value = (`${e.target.parentNode.children[1].innerText.split(':')[1]}`)
+        pages = document.getElementById('editPages')
+        pages.value = (parseInt(`${e.target.parentNode.children[2].innerText.match(/(\d+)/)}`))
+        read = document.getElementById('editCheckbox')
+        if (e.target.parentNode.children[3].innerText == "Read") {
+            read.checked = true
+        } else {
+            read.checked = false
+        }
+
+        editSubmitButton.addEventListener("click", () => { 
+            if (title.value === '' || author.value === '' || pages.value === '') {
+                return alert('Please fill out all fields');
+            } else {
+                e.target.parentNode.children[0].innerText = (`Title: ${title.value}`)
+                e.target.parentNode.children[1].innerText = (`Author: ${author.value}`)
+                e.target.parentNode.children[2].innerText = (`Pages: ${pages.value}`)
+                if (read.checked === true) {
+                    e.target.parentNode.children[3].innerText = "Read"
+                } else {
+                    e.target.parentNode.children[3].innerText = "Not Read"
+                }
+                updateTotalRead();
+                closeForm();
+            }
+        });
     })
 }
 
@@ -165,11 +203,6 @@ for (let i = 0; i < deleteBook.length; i++) {
     deleteBook[i].addEventListener("click", (e) => {
         e.target.parentNode.remove(e.target.parentNode);
         updateTotalBooks();
-        if (e.target.previousElementSibling.innerText == 'Read') {
-            readCounter -= 1
-        } else {
-            notReadCounter -= 1
-        }
         updateTotalRead()
     })
 }
@@ -180,9 +213,18 @@ function updateTotalBooks() {
 }
 
 function updateTotalRead() {
-    totalRead.innerText = (`Total Read: ${readCounter}`)
-    totalNotRead.innerText = (`Total Not Read: ${notReadCounter}`)
+    readCounter = 0
+    notReadCounter = 0
+    let readOrNot = document.getElementsByClassName('readOrNot')
+    for (let i = 0; i < readOrNot.length; i++) {
+        console.log(readOrNot)
+        console.log(readOrNot[i].innerText)
+        if (readOrNot[i].innerText == "Read") {
+            readCounter += 1
+        } else {
+            notReadCounter += 1
+        }
+        totalRead.innerText = (`Total Read: ${readCounter}`)
+        totalNotRead.innerText = (`Total Not Read: ${notReadCounter}`)
+    }
 }
-
-updateTotalBooks()
-updateTotalRead()

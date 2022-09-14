@@ -87,6 +87,48 @@
             
         </div>
     </div>
+
+    <div class="New_Book_Background" id="popup3">
+        <div class="New_Book" id="popup4">
+            <fieldset class="child-form">
+                <legend>Edit book</legend>
+                <form id="_form_">
+    
+                    <div class="title">
+                        <label for="editTitle"></label>
+                        <input type="text" name="editTitle" id="editTitle" placeholder="Title" required>
+                    </div>
+    
+                    <div class="author">
+                        <label for="editAuthor"></label>
+                        <input type="text" name="editAuthor" id="editAuthor" placeholder="Author" required>
+                    </div>
+    
+                    <div class="pages">
+                        <label for="editPages"></label>
+                        <input type="number" name="editPages" id="editPages" placeholder="Pages" required>
+                    </div>
+    
+                    <div class="read-book">
+                        <p>Have you read it?</p>
+                        <label class="switch" for="editCheckbox">
+                            <input type="checkbox" title="editCheckbox" name="editCheckbox" id="editCheckbox">
+                            <div class="slider round"></div>
+                        </label>
+                    </div>
+    
+                </form>
+                <div class="form-buttons">
+                    <button type="submit" class="button" id="edit-submit-button">Add</button>
+                    <button type="reset" class="button" id="edit-cancel-button">Cancel</button>
+                </div>
+    
+            </fieldset>
+            <div id="editClose"><i class="fa-solid fa-x"></i></div>
+    
+    
+        </div>
+    </div>
     <script src="script.js" defer></script>
 </body>
 </html>

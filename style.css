@@ -324,17 +324,20 @@ input:checked+.slider {
    font-size: 0.8em;
 }
 
-#submit-button:hover {
+#submit-button:hover,
+#edit-submit-button:hover {
    background: lightgreen;
    box-shadow: inset 0px 0px lightgreen;
    font-size: 0.7em;
 }
 
-#clear-button:hover {
+#clear-button:hover,
+#edit-cancel-button:hover {
    background: lightgray;
    box-shadow: inset 0px 0px lightgray;
    font-size: 0.7em;
 }
+
 
 .fa-star,
 .fa-book-open,
@@ -364,8 +367,8 @@ input:checked+.slider {
 }
 
 .fa-gear {
-   top: 5%;
-   right: 5%;
+   bottom: 5%;
+   left: 15%;
 }
 
 .fa-trash {
