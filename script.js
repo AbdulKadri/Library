@@ -182,25 +182,25 @@ for (let i = 0; i < _openEdit.length; i++) {
         } else {
             read.checked = false
         }
+        editSubmitButton.addEventListener("click", () => {
+            if (title.value === '' || author.value === '' || pages.value === '') {
+                return alert('Please fill out all fields');
+            } else {
+                e.target.parentNode.children[0].innerText = (`Title: ${title.value}`)
+                e.target.parentNode.children[1].innerText = (`Author: ${author.value}`)
+                e.target.parentNode.children[2].innerText = (`Pages: ${pages.value}`)
+                if (read.checked === true) {
+                    e.target.parentNode.children[3].innerText = "Read"
+                } else {
+                    e.target.parentNode.children[3].innerText = "Not Read"
+                }
+                updateTotalRead();
+                closeForm();
+            }
+        });
     })
 }
 
-editSubmitButton.addEventListener("click", () => {
-    if (title.value === '' || author.value === '' || pages.value === '') {
-        return alert('Please fill out all fields');
-    } else {
-        e.target.parentNode.children[0].innerText = (`Title: ${title.value}`)
-        e.target.parentNode.children[1].innerText = (`Author: ${author.value}`)
-        e.target.parentNode.children[2].innerText = (`Pages: ${pages.value}`)
-        if (read.checked === true) {
-            e.target.parentNode.children[3].innerText = "Read"
-        } else {
-            e.target.parentNode.children[3].innerText = "Not Read"
-        }
-        updateTotalRead();
-        closeForm();
-    }
-});
 
 const deleteBook = document.getElementsByClassName('fa-trash');
 for (let i = 0; i < deleteBook.length; i++) {
