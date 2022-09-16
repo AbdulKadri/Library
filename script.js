@@ -124,90 +124,83 @@ function clearForm() {
     document.getElementById('_form').reset();
 }
 
-const star = document.getElementsByClassName('fa-star');
-for (let i = 0; i < star.length; i++) {
-    star[i].addEventListener("click", (e) => {
-        console.log(star[i])
-        if (e.target.classList.contains('fa-yellow')) {
-            e.target.classList.remove('fa-yellow')
-            mediaScroller[1].removeChild(e.target.parentNode)
-            mediaScroller[2].appendChild(e.target.parentNode)
+addGlobalEventListener("click", ".fa-star", e => {
+    if (e.target.classList.contains('fa-yellow')) {
+        e.target.classList.remove('fa-yellow')
+        mediaScroller[1].removeChild(e.target.parentNode)
+        mediaScroller[2].appendChild(e.target.parentNode)
+    } else {
+        if (e.target.nextElementSibling.classList.contains('fa-blue')) {
+            alert('Whoops cannot have Favourites and Currently Reading both active at this time')
         } else {
-            if (e.target.nextElementSibling.classList.contains('fa-blue')) {
-                alert('Whoops cannot have Favourites and Currently Reading both active at this time')
-            } else {
-                e.target.classList.add('fa-yellow');
-                mediaScroller[2].removeChild(e.target.parentNode)
-                mediaScroller[1].appendChild(e.target.parentNode)
-            }
+            e.target.classList.add('fa-yellow');
+            mediaScroller[2].removeChild(e.target.parentNode)
+            mediaScroller[1].appendChild(e.target.parentNode)
         }
-    })
-}
+    }
+})
 
-const book = document.getElementsByClassName('fa-book-open');
-for (let i = 0; i < book.length; i++) {
-    book[i].addEventListener("click", (e) => {
-        console.log(book[i])
-        if (e.target.classList.contains('fa-blue')) {
-            e.target.classList.remove('fa-blue')
-            mediaScroller[0].removeChild(e.target.parentNode)
-            mediaScroller[2].appendChild(e.target.parentNode)
+addGlobalEventListener("click", ".fa-book-open", e => {
+    if (e.target.classList.contains('fa-blue')) {
+        e.target.classList.remove('fa-blue')
+        mediaScroller[0].removeChild(e.target.parentNode)
+        mediaScroller[2].appendChild(e.target.parentNode)
+    } else {
+        if (e.target.previousElementSibling.classList.contains('fa-yellow')) {
+            alert('Whoops cannot have Favourites and Currently Reading both active at this time')
         } else {
-            if (e.target.previousElementSibling.classList.contains('fa-yellow')) {
-                alert('Whoops cannot have Favourites and Currently Reading both active at this time')
-            } else {
-                e.target.classList.add('fa-blue');
-                mediaScroller[2].removeChild(e.target.parentNode)
-                mediaScroller[0].appendChild(e.target.parentNode)
-            }
+            e.target.classList.add('fa-blue');
+            mediaScroller[2].removeChild(e.target.parentNode)
+            mediaScroller[0].appendChild(e.target.parentNode)
         }
-    })
-}
+    }
+})
 
-const _openEdit = document.getElementsByClassName('fa-gear');
-for (let i = 0; i < _openEdit.length; i++) {
-    _openEdit[i].addEventListener('click', (e) => {
-        _popup3.classList.add('show');
-        _popup4.classList.add('show');
-        let practice = e.target.parentNode.children[0].innerText.split(':')[1]
-        title = document.getElementById('editTitle')
-        title.value = (`${practice}`)
-        author = document.getElementById('editAuthor')
-        author.value = (`${e.target.parentNode.children[1].innerText.split(':')[1]}`)
-        pages = document.getElementById('editPages')
-        pages.value = (parseInt(`${e.target.parentNode.children[2].innerText.match(/(\d+)/)}`))
-        read = document.getElementById('editCheckbox')
-        if (e.target.parentNode.children[3].innerText == "Read") {
-            read.checked = true
+addGlobalEventListener("click", ".fa-gear", e => {
+    _popup3.classList.add('show');
+    _popup4.classList.add('show');
+    let practice = e.target.parentNode.children[0].innerText.split(':')[1]
+    title = document.getElementById('editTitle')
+    title.value = (`${practice}`)
+    author = document.getElementById('editAuthor')
+    author.value = (`${e.target.parentNode.children[1].innerText.split(':')[1]}`)
+    pages = document.getElementById('editPages')
+    pages.value = (parseInt(`${e.target.parentNode.children[2].innerText.match(/(\d+)/)}`))
+    read = document.getElementById('editCheckbox')
+    if (e.target.parentNode.children[3].innerText == "Read") {
+        read.checked = true
+    } else {
+        read.checked = false
+    }
+    editSubmitButton.addEventListener("click", () => {
+        if (title.value === '' || author.value === '' || pages.value === '') {
+            return alert('Please fill out all fields');
         } else {
-            read.checked = false
-        }
-        editSubmitButton.addEventListener("click", () => {
-            if (title.value === '' || author.value === '' || pages.value === '') {
-                return alert('Please fill out all fields');
+            e.target.parentNode.children[0].innerText = (`Title: ${title.value}`)
+            e.target.parentNode.children[1].innerText = (`Author: ${author.value}`)
+            e.target.parentNode.children[2].innerText = (`Pages: ${pages.value}`)
+            if (read.checked === true) {
+                e.target.parentNode.children[3].innerText = "Read"
             } else {
-                e.target.parentNode.children[0].innerText = (`Title: ${title.value}`)
-                e.target.parentNode.children[1].innerText = (`Author: ${author.value}`)
-                e.target.parentNode.children[2].innerText = (`Pages: ${pages.value}`)
-                if (read.checked === true) {
-                    e.target.parentNode.children[3].innerText = "Read"
-                } else {
-                    e.target.parentNode.children[3].innerText = "Not Read"
-                }
-                updateTotalRead();
-                closeForm();
+                e.target.parentNode.children[3].innerText = "Not Read"
             }
-        });
-    })
-}
+            updateTotalRead();
+            closeForm();
+        }
+    },
+        { once: true }
+    );
+})
 
+addGlobalEventListener("click", ".fa-trash", e => {
+    e.target.parentNode.remove(e.target.parentNode);
+    updateTotalBooks();
+    updateTotalRead();
+})
 
-const deleteBook = document.getElementsByClassName('fa-trash');
-for (let i = 0; i < deleteBook.length; i++) {
-    deleteBook[i].addEventListener("click", (e) => {
-        e.target.parentNode.remove(e.target.parentNode);
-        updateTotalBooks();
-        updateTotalRead()
+function addGlobalEventListener(type, selector, callback) {
+    document.addEventListener(type, e => {
+        if (e.target.matches(selector)) callback(e)
     })
 }
 
